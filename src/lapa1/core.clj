@@ -76,4 +76,15 @@
 (sum-primes-m (get-primes (get-numbers 2000)))
 
 
+;; 3. генерация последовательности при помощи отображения (map);
+(defn get-primes-map
+  [limit]
+  (map #(if (prime-m? %)
+          %
+          nil)
+       (range 2 limit)))
 
+(defn sum-primes-for-map
+  [limit]
+  (reduce +(filter some? (get-primes-map limit))))
+(sum-primes-for-map 10)
