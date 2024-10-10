@@ -86,5 +86,31 @@
 
 (defn sum-primes-for-map
   [limit]
-  (reduce +(filter some? (get-primes-map limit))))
+  (reduce + (filter some? (get-primes-map limit))))
 (sum-primes-for-map 2000)
+
+
+;; 4. работа со спец. синтаксисом для циклов (где применимо);
+
+(defn sum-primes-for-loop
+  [limit]
+  (loop [n 2
+         sum 0]
+    (if (>= n limit)
+      sum
+      (recur (inc n)
+             (if (prime? n)
+               (+ sum n)
+               sum)))))
+
+(sum-primes-for-loop 2000)
+
+
+(defn sum-primes-for
+  [limit]
+  (reduce + (for [n (range 2 limit)
+                  :when (prime? n)]
+              n)))
+(sum-primes-for 2000000)
+
+;; 5. работа с бесконечными списками для языков, поддерживающих ленивые коллекции или итераторы как часть языка (к примеру Haskell, Clojure);
