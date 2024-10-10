@@ -1,0 +1,245 @@
+; This is the Calva REPL Window.
+; It's just a file, really, with some special treatment from Calva.
+; Use it as a REPL input prompt if you like. (When the REPL is connected.)
+; TIPS: The keyboard shortcut `ctrl+alt+o r` shows and focuses this window
+; Please see https://calva.io/repl-window/ for more info.
+; Happy coding! ♥️
+
+; TIPS: As with any Clojure file when the REPL is connected:
+; - `alt+enter` evaluates the current top level form.
+; - `ctrl+enter` evaluates the current form.
+; Special for this file:
+; - `alt+up` and `alt+down` traverse up and down the REPL command history
+;    when the cursor is after the last contents at the prompt
+; 
+; See also the Calva Inspector: https://calva.io/inspector/
+
+PLEASE NOTE
+We will update the default location of this file.
+The new default location will be
+  "<projectRootPath>/.calva/repl.calva-repl"
+For now the legacy path is used by default.
+To give yourself a smooth transition, you can opt in
+to the change, by configuring this setting as false:
+  "calva.useLegacyReplWindowPath"
+and then add "**/.calva/repl.calva-repl" to your ".gitignore" file.
+
+
+This file is configured as the output destination for all REPL output.
+You can configure this with the setting:
+  "calva.outputDestinations"
+
+
+; Jacking in...
+; Connecting using "Leiningen" project type.
+; You can make Calva auto-select this.
+;   - See https://calva.io/connect-sequences/
+; 
+
+; Starting Jack-in: (cd /Users/zirtoshka/fp/labupiki/lapa1; lein update-in :dependencies conj '[nrepl,"1.1.1"]' -- update-in :plugins conj '[cider/cider-nrepl,"0.47.1"]' -- update-in '[:repl-options,:nrepl-middleware]' conj '["cider.nrepl/cider-middleware"]' -- with-profile +uberjar repl :headless)
+; Using host:port 127.0.0.1:60718 ...
+; Hooking up nREPL sessions ...
+; Connected session: clj
+; Evaluating code from settings: 'calva.autoEvaluateCode.onConnect.clj'
+nil
+clj꞉lapa1.core꞉> 
+"Please see https://calva.io/output/#about-stdout-in-the-repl-window
+about why stdout printed to this file is prepended with `;` to be line comments."
+clj꞉lapa1.core꞉> 
+; Jack-in done.
+clj꞉lapa1.core꞉> 
+#'lapa1.core/divisible?
+clj꞉lapa1.core꞉> 
+true
+clj꞉lapa1.core꞉> 
+false
+clj꞉lapa1.core꞉> 
+#'lapa1.core/prime?
+clj꞉lapa1.core꞉> 
+false
+clj꞉lapa1.core꞉> 
+false
+clj꞉lapa1.core꞉> 
+true
+clj꞉lapa1.core꞉> 
+#'lapa1.core/prime?
+clj꞉lapa1.core꞉> 
+true
+clj꞉lapa1.core꞉> 
+false
+clj꞉lapa1.core꞉> 
+true
+clj꞉lapa1.core꞉> 
+#'lapa1.core/sum-primes
+clj꞉lapa1.core꞉> 
+17
+clj꞉lapa1.core꞉> 
+142913828922
+clj꞉lapa1.core꞉> 
+17
+clj꞉lapa1.core꞉> 
+17
+clj꞉lapa1.core꞉> 
+17
+clj꞉lapa1.core꞉> 
+17
+clj꞉lapa1.core꞉> 
+28
+clj꞉lapa1.core꞉> 
+28
+clj꞉lapa1.core꞉> 
+17
+clj꞉lapa1.core꞉> 
+17
+clj꞉lapa1.core꞉> 
+#'lapa1.core/sum-primes
+clj꞉lapa1.core꞉> 
+#'lapa1.core/sum-primes
+clj꞉lapa1.core꞉> 
+28
+clj꞉lapa1.core꞉> 
+#'lapa1.core/sum-primes
+clj꞉lapa1.core꞉> 
+17
+clj꞉lapa1.core꞉> 
+#'lapa1.core/sum-primes
+clj꞉lapa1.core꞉> 
+17
+clj꞉lapa1.core꞉> 
+28
+clj꞉lapa1.core꞉> 
+#'lapa1.core/sum-primes
+clj꞉lapa1.core꞉> 
+28
+clj꞉lapa1.core꞉> 
+; -------------------------
+; lapa1.core/sum-primes
+; ([n] [curr sum n])
+;   get sum of primes that less then n
+nil
+clj꞉lapa1.core꞉> 
+#'lapa1.core/prime_rec?
+clj꞉lapa1.core꞉> 
+#'lapa1.core/sum-primes_rec
+clj꞉lapa1.core꞉> 
+#'lapa1.core/sum-primes_rec
+clj꞉lapa1.core꞉> 
+#'lapa1.core/sum-primes_rec
+clj꞉lapa1.core꞉> 
+#'lapa1.core/sum-primes-m
+clj꞉lapa1.core꞉> 
+6
+clj꞉lapa1.core꞉> 
+#'lapa1.core/get-primes
+clj꞉lapa1.core꞉> 
+; Syntax error compiling at (src/lapa1/core.clj:58:7).
+; Unable to resolve symbol: n in this context
+clj꞉lapa1.core꞉> 
+#'lapa1.core/get-primes
+clj꞉lapa1.core꞉> 
+#'lapa1.core/prime-m?
+clj꞉lapa1.core꞉> 
+#'lapa1.core/get-numbers
+clj꞉lapa1.core꞉> 
+277048
+clj꞉lapa1.core꞉> 
+15
+clj꞉lapa1.core꞉> 
+#'lapa1.core/get-numbers
+clj꞉lapa1.core꞉> 
+#'lapa1.core/prime-m?
+clj꞉lapa1.core꞉> 
+#'lapa1.core/get-primes
+clj꞉lapa1.core꞉> 
+#'lapa1.core/sum-primes-m
+clj꞉lapa1.core꞉> 
+15
+clj꞉lapa1.core꞉> 
+15
+clj꞉lapa1.core꞉> 
+11
+clj꞉lapa1.core꞉> 
+(3 5 7)
+clj꞉lapa1.core꞉> 
+1
+clj꞉lapa1.core꞉> 
+15
+clj꞉lapa1.core꞉> 
+11
+clj꞉lapa1.core꞉> 
+(2 3 4 5 6 7 8 9 10)
+clj꞉lapa1.core꞉> 
+(3 5 7)
+clj꞉lapa1.core꞉> 
+false
+clj꞉lapa1.core꞉> 
+#'lapa1.core/get-numbers
+clj꞉lapa1.core꞉> 
+15
+clj꞉lapa1.core꞉> 
+15
+clj꞉lapa1.core꞉> 
+15
+clj꞉lapa1.core꞉> 
+15
+clj꞉lapa1.core꞉> 
+11
+clj꞉lapa1.core꞉> 
+(2 3 4 5 6 7 8 9 10)
+clj꞉lapa1.core꞉> 
+true
+clj꞉lapa1.core꞉> 
+2
+clj꞉lapa1.core꞉> 
+2
+clj꞉lapa1.core꞉> 
+true
+clj꞉lapa1.core꞉> 
+true
+clj꞉lapa1.core꞉> 
+false
+clj꞉lapa1.core꞉> 
+1.4142135623730951
+clj꞉lapa1.core꞉> 
+2.414213562373095
+clj꞉lapa1.core꞉> 
+(2)
+clj꞉lapa1.core꞉> 
+2.414213562373095
+clj꞉lapa1.core꞉> 
+2.414213562373095
+clj꞉lapa1.core꞉> 
+1.4142135623730951
+clj꞉lapa1.core꞉> 
+2.414213562373095
+clj꞉lapa1.core꞉> 
+(2)
+clj꞉lapa1.core꞉> 
+(2)
+clj꞉lapa1.core꞉> 
+false
+clj꞉lapa1.core꞉> 
+(2)
+clj꞉lapa1.core꞉> 
+false
+clj꞉lapa1.core꞉> 
+#function[lapa1.core/eval10714/fn--10715]
+clj꞉lapa1.core꞉> 
+false
+clj꞉lapa1.core꞉> 
+15
+clj꞉lapa1.core꞉> 
+#'lapa1.core/prime-m?
+clj꞉lapa1.core꞉> 
+true
+clj꞉lapa1.core꞉> 
+17
+clj꞉lapa1.core꞉> 
+142913828922
+clj꞉lapa1.core꞉> 
+142913828922
+clj꞉lapa1.core꞉> 
+277050
+clj꞉lapa1.core꞉> 
+277050
+clj꞉lapa1.core꞉> 
