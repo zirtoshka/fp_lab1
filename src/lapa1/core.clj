@@ -87,4 +87,4 @@
 (defn sum-primes-for-map
   [limit]
   (reduce +(filter some? (get-primes-map limit))))
-(sum-primes-for-map 10)
+(sum-primes-for-map 2000)
