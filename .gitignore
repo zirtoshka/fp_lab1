@@ -13,3 +13,7 @@ pom.xml.asc
 .hg/
 /lib/
 .cpcache/
+.calva/
+./clj-kondo
+.lsp/
+.vscode/
