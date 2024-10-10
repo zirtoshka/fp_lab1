@@ -111,6 +111,21 @@
   (reduce + (for [n (range 2 limit)
                   :when (prime? n)]
               n)))
-(sum-primes-for 2000000)
+(sum-primes-for 2000)
 
 ;; 5. работа с бесконечными списками для языков, поддерживающих ленивые коллекции или итераторы как часть языка (к примеру Haskell, Clojure);
+
+(def get-primes-lazy
+  (filter prime-m? (iterate inc 2)))
+
+(defn sum-primes-lazy
+  [limit]
+  (reduce + (take-while #(< % limit) get-primes-lazy)))
+
+
+(sum-primes-lazy 2000)
+
+ 
+ 
+
+
