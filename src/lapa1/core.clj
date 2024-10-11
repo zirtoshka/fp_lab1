@@ -125,7 +125,53 @@
 
 (sum-primes-lazy 2000)
 
- 
- 
 
 
+
+
+
+
+
+
+
+;; 1. монолитные реализации с использованием:
+;;     - хвостовой рекурсии;
+;;     - рекурсии (вариант с хвостовой рекурсией не является примером рекурсии);
+;; 2. модульной реализации, где явно разделена генерация последовательности, фильтрация и свёртка (должны использоваться функции reduce/fold, filter и аналогичные);
+;; 3. генерация последовательности при помощи отображения (map);
+;; 4. работа со спец. синтаксисом для циклов (где применимо);
+;; 5. работа с бесконечными списками для языков, поддерживающих ленивые коллекции или итераторы как часть языка (к примеру Haskell, Clojure);
+
+
+(defn sum-devisors-helper
+  [n i acc]
+  (if (> i (inc (Math/sqrt n)))
+    acc
+    (if (zero? (mod n i))
+      (if (== (Math/sqrt n) (/ n i))
+        (recur n (inc i) (+ acc i))
+        (recur n (inc i) (+ acc i (/ n i))))
+      (recur n (inc i) acc))))
+
+(defn sum-devisors
+  [n]
+  (sum-devisors-helper n 2 1))
+
+
+(defn has-amicable-pare?
+  [n]
+  (let [a (sum-devisors n)]
+    (and (not= n a)
+         (= n (sum-devisors a)))))
+
+(defn sum-amicable-numbers-tail
+  ([limit]
+   (sum-amicable-numbers-tail limit 1 0))
+  ([limit curr acc]
+   (if (> curr limit)
+     acc
+     (if (has-amicable-pare? curr)
+       (recur limit (inc curr) (+ acc curr))
+       (recur limit (inc curr) acc)))))
+
+(sum-amicable-numbers-tail 10000)
