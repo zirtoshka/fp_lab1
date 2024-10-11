@@ -144,9 +144,9 @@
 
 ;;     - хвостовой рекурсии;
 
-(defn sum-devisors-tail
+(defn sum-divisors-tail
   ([n]
-   (sum-devisors-tail n 2 1))
+   (sum-divisors-tail n 2 1))
 
   ([n i acc]
    (if (> i (inc (Math/sqrt n)))
@@ -170,7 +170,7 @@
   ([limit curr acc]
    (if (> curr limit)
      acc
-     (if (has-amicable-pare? curr sum-devisors-tail)
+     (if (has-amicable-pare? curr sum-divisors-tail)
        (recur limit (inc curr) (+ acc curr))
        (recur limit (inc curr) acc)))))
 
@@ -212,11 +212,11 @@
   (reduce (fn [acc i]
             (if (zero? (mod n i))
               (if  (== (Math/sqrt n) (/ n i))
-                  (+ acc i)
-                  (+ acc i (/ n i)))
+                (+ acc i)
+                (+ acc i (/ n i)))
               acc))
-            1
-            (range 2 (inc (Math/sqrt n)))))
+          1
+          (range 2 (inc (Math/sqrt n)))))
 
 (defn get-amicable-numbers
   [seq]
@@ -231,7 +231,51 @@
 
 ;; 3. генерация последовательности при помощи отображения (map);
 
+(defn generate-sum-divisors
+  [limit]
+  (map (fn [n] [n (sum-divisors-tail n)]) (range 1 limit)))
+
+(defn amicable-pair?
+  [[a b] pairs]
+  (and (not= a b)
+       (= a (second (nth pairs (dec b) [b 0])))))
+
+(defn sum-amicable-numbers-map
+  [limit]
+  (let [pairs (generate-sum-divisors limit)]
+    (->> pairs
+         (filter #(amicable-pair? % pairs))
+         (map first)
+         (distinct)
+         (reduce +))))
+
+(sum-amicable-numbers-map 10000)
 
 ;; 4. работа со спец. синтаксисом для циклов (где применимо);
+
+(defn sum-divisors-loop
+  [n]
+  (loop [i 2
+         sum 1]
+    (if  (< i (inc (Math/sqrt n)))
+      (if (zero? (mod n i))
+        (if  (== (Math/sqrt n) (/ n i))
+          (recur (inc i) (+ sum i))
+          (recur (inc i) (+ sum i (/ n i))))
+        (recur (inc i) sum))
+      sum)))
+
+(defn sum-amicable-numbers-loop
+  [limit]
+  (loop [n 1
+         sum 0]
+    (if (< n limit)
+      (if (has-amicable-pare? n sum-divisors-loop)
+        (recur (inc n) (+ sum n))
+        (recur (inc n) sum))
+      sum)))
+
+(sum-amicable-numbers-loop 10000)
+
 
 ;; 5. работа с бесконечными списками для языков, поддерживающих ленивые коллекции или итераторы как часть языка (к примеру Haskell, Clojure);
