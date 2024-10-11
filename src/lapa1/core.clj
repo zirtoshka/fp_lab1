@@ -203,3 +203,27 @@
    (sum-amicable-numbers-recursive 1 limit 0)))
 
 (sum-amicable-numbers-recursive 10000)
+
+
+
+;; 2. модульной реализации, где явно разделена генерация последовательности, фильтрация и свёртка (должны использоваться функции reduce/fold, filter и аналогичные);
+(defn sum-divisors-m
+  [n]
+  (reduce (fn [acc i]
+            (if (zero? (mod n i))
+              (if  (== (Math/sqrt n) (/ n i))
+                  (+ acc i)
+                  (+ acc i (/ n i)))
+              acc))
+            1
+            (range 2 (inc (Math/sqrt n)))))
+
+(defn get-amicable-numbers
+  [seq]
+  (filter  #(has-amicable-pare? % sum-divisors-m) seq))
+
+(defn sum-amicable-numbers-m
+  [limit]
+  (reduce + (get-amicable-numbers (get-numbers limit))))
+
+(sum-amicable-numbers-m 10000)
