@@ -277,5 +277,14 @@
 
 (sum-amicable-numbers-loop 10000)
 
-
 ;; 5. работа с бесконечными списками для языков, поддерживающих ленивые коллекции или итераторы как часть языка (к примеру Haskell, Clojure);
+
+(defn amicable-numbers-seq []
+  (filter #(has-amicable-pare? % sum-divisors-m)(range 1 10000)))
+
+
+(defn sum-amicable-numbers-lazy
+  [limit]
+  (reduce + (take-while #(< % limit) (amicable-numbers-seq))))
+
+(sum-amicable-numbers-lazy 10000)
