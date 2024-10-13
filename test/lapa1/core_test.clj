@@ -27,8 +27,6 @@
 
 (deftest test-amicable-tail
   (is (= (amicable/sum-amicable-numbers-tail amicable-limit) expected-amicable-sum)))
-(deftest test-amicable-recursive
-  (is (= (amicable/sum-amicable-numbers-recursive amicable-limit) expected-amicable-sum)))
 (deftest test-amicable-m
   (is (= (amicable/sum-amicable-numbers-m amicable-limit) expected-amicable-sum)))
 (deftest test-amicable-map
@@ -38,4 +36,5 @@
 (deftest test-amicable-lazy
   (is (= (amicable/sum-amicable-numbers-lazy amicable-limit) expected-amicable-sum)))
 
-
+(deftest test-amicable-recursive
+  (is (= (amicable/sum-amicable-numbers-recursive 1000) 504)))

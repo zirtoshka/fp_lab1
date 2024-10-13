@@ -45,25 +45,31 @@
 
 (defn sum-divisors-recursive
   ([n]
-   (+ 1 (sum-divisors-recursive n 2)))
-  ([n i]
-   (if (> i (inc (Math/sqrt n)))
-     0
-     (if (zero? (mod n i))
-       (if (== (Math/sqrt n) (/ n i))
-         (+ i (sum-divisors-recursive n (inc i)))
-         (+ i (/ n i) (sum-divisors-recursive n (inc i))))
-       (sum-divisors-recursive n (inc i))))))
+   (sum-divisors-recursive n 2 1))
+  ([n i acc]
+   (let [sqrt-n (Math/sqrt n)]
+     (if (> i (inc sqrt-n))
+       acc
+       (if (zero? (mod n i))
+         (if (= sqrt-n (/ n i))  
+           (sum-divisors-recursive n (inc i) (+ acc i))
+           (sum-divisors-recursive n (inc i) (+ acc i (/ n i))))
+         (sum-divisors-recursive n (inc i) acc))))))
+
 
 (defn sum-amicable-numbers-recursive
+  ([limit]
+   (sum-amicable-numbers-recursive 1 limit 0))
   ([n limit acc]
    (if (> n limit)
      acc
      (if (has-amicable-pare? n sum-divisors-recursive)
        (sum-amicable-numbers-recursive (inc n) limit (+ acc n))
-       (sum-amicable-numbers-recursive (inc n) limit acc))))
-  ([limit]
-   (sum-amicable-numbers-recursive 1 limit 0)))
+       (sum-amicable-numbers-recursive (inc n) limit acc)))))
+
+
+
+
 
 ;; 2. модульной реализации, где явно разделена генерация последовательности, фильтрация и свёртка (должны использоваться функции reduce/fold, filter и аналогичные);
 
@@ -140,7 +146,7 @@
 ;; 5. работа с бесконечными списками для языков, поддерживающих ленивые коллекции или итераторы как часть языка (к примеру Haskell, Clojure);
 
 (defn amicable-numbers-seq []
-  (filter #(has-amicable-pare? % sum-divisors-m)(range 1 10000)))
+  (filter #(has-amicable-pare? % sum-divisors-m) (range 1 10000)))
 
 (defn sum-amicable-numbers-lazy
   [limit]
