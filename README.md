@@ -113,6 +113,27 @@ Clojure поддерживает ленивые коллекции, что по�
   (reduce + (take-while #(< % limit) get-primes-lazy)))
 ```
 
+6. **Реализация на Python**
+```Python
+n = 2*10**6
+lst = [2]
+
+for i in range(3, n+1, 2):
+    if (i > 10):
+        if (i%2==0) or (i%10==5):
+            continue
+    fl=True
+    for j in lst:
+        if j > int((sqrt(i)) + 1):
+            break
+        if i % j == 0:
+            fl=False
+            break
+    if fl: lst.append(i)
+
+print(sum(lst))
+```
+
 ### Задача 21
 1. **Решение с использованием хвостовой рекурсии**
 
@@ -233,8 +254,6 @@ Clojure поддерживает ленивые коллекции, что по�
 
 Clojure поддерживает ленивые коллекции, что позволяет работать с бесконечными последовательностями.
 
-Пример:
-
 ```clojure
 (defn amicable-numbers-seq []
   (filter #(has-amicable-pare? % sum-divisors-m) (range 1 10000)))
@@ -242,6 +261,26 @@ Clojure поддерживает ленивые коллекции, что по�
 (defn sum-amicable-numbers-lazy
   [limit]
   (reduce + (take-while #(< % limit) (amicable-numbers-seq))))
+```
+6. **Реализация на Python**
+```Python
+def sum_factors(n):  
+    result = []
+    for i in range(1, int(n**0.5) + 1):
+        if n % i == 0:
+            result.extend([i, n//i])
+    return sum(set(result)-set([n]))
+
+def amicable_pair(number):
+    result = []
+    for x in range(1,number+1):
+        y = sum_factors(x)
+        if sum_factors(y) == x and x != y:
+            result.append(y)
+            result.append(x)
+    return set(result)
+    
+print(sum(amicable_pair(10000)))
 ```
 
 ## Выводы
