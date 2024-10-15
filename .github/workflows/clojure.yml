@@ -14,21 +14,21 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Install clj-kondo
-      run: |
-        curl -LO https://github.com/clj-kondo/clj-kondo/releases/download/v2023.06.28/clj-kondo-linux-amd64.zip
-        unzip clj-kondo-linux-amd64.zip -d clj-kondo
-        sudo mv clj-kondo/clj-kondo /usr/local/bin/
-        clj-kondo --version
+    - name: Install Clojure CLI
+      uses: DeLaGuardo/setup-clojure@12.5
+      with:
+        cli: latest
+        clj-kondo: latest
+        cljfmt: latest
 
-    - name: Run clj-kondo linter
-      run: clj-kondo --lint src test
+    - name: Check format
+      run: cljfmt check
+
+    - name: Lint
+      run: clj-kondo --lint src
 
     - name: Install dependencies
       run: lein deps
-
-    - name: Run cljfmt check
-      run: lein cljfmt check
-
+      
     - name: Run tests
       run: lein test
