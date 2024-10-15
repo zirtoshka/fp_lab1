@@ -1,6 +1,5 @@
 (ns lapa1.amicable)
 
-
 ;; 1. монолитные реализации с использованием:
 ;;     - хвостовой рекурсии;
 ;;     - рекурсии (вариант с хвостовой рекурсией не является примером рекурсии);
@@ -40,7 +39,6 @@
        (recur limit (inc curr) (+ acc curr))
        (recur limit (inc curr) acc)))))
 
-
 ;;     - рекурсии (вариант с хвостовой рекурсией не является примером рекурсии);
 
 (defn sum-divisors-recursive
@@ -51,11 +49,10 @@
      (if (> i (inc sqrt-n))
        acc
        (if (zero? (mod n i))
-         (if (= sqrt-n (/ n i))  
+         (if (= sqrt-n (/ n i))
            (sum-divisors-recursive n (inc i) (+ acc i))
            (sum-divisors-recursive n (inc i) (+ acc i (/ n i))))
          (sum-divisors-recursive n (inc i) acc))))))
-
 
 (defn sum-amicable-numbers-recursive
   ([limit]
@@ -66,10 +63,6 @@
      (if (has-amicable-pare? n sum-divisors-recursive)
        (sum-amicable-numbers-recursive (inc n) limit (+ acc n))
        (sum-amicable-numbers-recursive (inc n) limit acc)))))
-
-
-
-
 
 ;; 2. модульной реализации, где явно разделена генерация последовательности, фильтрация и свёртка (должны использоваться функции reduce/fold, filter и аналогичные);
 
@@ -96,7 +89,6 @@
   [limit]
   (reduce + (get-amicable-numbers (get-numbers limit))))
 
-
 ;; 3. генерация последовательности при помощи отображения (map);
 
 (defn generate-sum-divisors
@@ -116,7 +108,6 @@
          (map first)
          (distinct)
          (reduce +))))
-
 
 ;; 4. работа со спец. синтаксисом для циклов (где применимо);
 
@@ -141,7 +132,6 @@
         (recur (inc n) (+ sum n))
         (recur (inc n) sum))
       sum)))
-
 
 ;; 5. работа с бесконечными списками для языков, поддерживающих ленивые коллекции или итераторы как часть языка (к примеру Haskell, Clojure);
 

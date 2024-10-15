@@ -3,12 +3,10 @@
             [lapa1.primes :as primes]
             [lapa1.amicable :as amicable]))
 
-
 (def prime-limit 2000000)
 (def amicable-limit 10000)
 (def expected-prime-sum 142913828922)
 (def expected-amicable-sum 31626)
-
 
 (deftest test-primes-tail
   (is (= (primes/sum-primes-tail prime-limit) expected-prime-sum)))
@@ -22,8 +20,6 @@
   (is (= (primes/sum-primes-for prime-limit) expected-prime-sum)))
 (deftest test-primes-lazy
   (is (= (primes/sum-primes-lazy prime-limit) expected-prime-sum)))
-
-
 
 (deftest test-amicable-tail
   (is (= (amicable/sum-amicable-numbers-tail amicable-limit) expected-amicable-sum)))

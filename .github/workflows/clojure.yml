@@ -13,7 +13,21 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+
+    - name: Install clj-kondo
+      run: |
+        curl -LO https://github.com/clj-kondo/clj-kondo/releases/latest/download/clj-kondo-linux-amd64.zip
+        unzip clj-kondo-linux-amd64.zip
+        sudo mv clj-kondo /usr/local/bin/
+
+    - name: Run clj-kondo linter
+      run: clj-kondo --lint src test
+
     - name: Install dependencies
       run: lein deps
+
+    - name: Run cljfmt check
+      run: lein cljfmt check
+
     - name: Run tests
       run: lein test
