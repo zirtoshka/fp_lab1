@@ -7,4 +7,7 @@
   :main ^:skip-aot lapa1.core
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all
-                       :jvm-opts ["-Dclojure.compiler.direct-linking=true"]}})
+                       :jvm-opts ["-Dclojure.compiler.direct-linking=true"]}}
+  :plugins [[jonase/eastwood "0.9.9"]
+            [lein-cljfmt "0.8.0"]]
+)
