@@ -16,9 +16,10 @@ jobs:
 
     - name: Install clj-kondo
       run: |
-        curl -LO https://github.com/clj-kondo/clj-kondo/releases/latest/download/clj-kondo-linux-amd64.zip
-        unzip clj-kondo-linux-amd64.zip
-        sudo mv clj-kondo /usr/local/bin/
+        curl -LO https://github.com/clj-kondo/clj-kondo/releases/download/v2023.06.28/clj-kondo-linux-amd64.zip
+        unzip clj-kondo-linux-amd64.zip -d clj-kondo
+        sudo mv clj-kondo/clj-kondo /usr/local/bin/
+        clj-kondo --version
 
     - name: Run clj-kondo linter
       run: clj-kondo --lint src test
