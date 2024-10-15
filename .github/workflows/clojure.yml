@@ -13,7 +13,15 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+
     - name: Install dependencies
       run: lein deps
+
+    - name: Run Eastwood (linter)
+      run: lein eastwood
+
+    - name: Run cljfmt (formatter)
+      run: lein cljfmt check
+
     - name: Run tests
       run: lein test
